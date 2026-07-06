@@ -1,6 +1,6 @@
 # 🍪 Mammalia — Premium Cookies Shop
 
-**Live Demo:** https://syaanocturne.github.io/Ecommerce-Sederhana-Huwaida-Aulia/
+**Live Demo:** (https://syaanocturne.github.io/ecommerce-sederhana-Huwaidaaa/)
 
 Website e-commerce sederhana untuk toko kue kering premium "Mammalia", dibangun dengan
 HTML, CSS, dan JavaScript murni (vanilla), lengkap dengan katalog produk, keranjang
@@ -261,16 +261,3 @@ python3 -m http.server 8000
 
 # atau menggunakan VS Code Live Server extension
 ```
-
-Lalu buka `http://localhost:8000` di browser.
-
-## 13. Deployment ke GitHub Pages
-
-1. Push seluruh isi folder ini ke branch `main` repository GitHub.
-2. Buka **Settings → Pages** pada repository.
-3. Pilih source branch `main` dan folder `/ (root)`.
-4. Simpan, tunggu beberapa menit hingga GitHub Pages selesai men-deploy.
-5. Website dapat diakses melalui:
-   `https://<username>.github.io/<nama-repo>/`
-
-**Live URL saat ini:** https://syaanocturne.github.io/Ecommerce-Sederhana-Huwaida-Aulia/
