@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mammalia - Premium Cookies Shop</title>
+    <meta
+      name="description"
+      content="Mammalia - Toko cookies premium buatan tangan. Chocolate bites, matcha bites, kastangel, nastar, dan hampers Lebaran."
+    />
+
+    <!-- Google Analytics (GA4) - Dummy Measurement ID untuk keperluan demo -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-cookie-bite"></i> Mammalia
+        </a>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="README.md">Business Overview</a></li>
+            <li>
+              <a href="cart.html" class="cart-link">
+                <i class="fas fa-shopping-cart"></i> Cart
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero-container">
+          <h1>#FromOurKitchenToYourTable</h1>
+          <p>
+            From buttery pastries to classic cookies, every bite is baked with
+            care and made to brighten your day.
+          </p>
+          <a href="#products" class="cta-button">
+            <i class="fas fa-shopping-bag"></i> Belanja Sekarang
+          </a>
+          <div class="trust-badges">
+            <span class="trust-badge"
+              ><i class="fas fa-truck"></i> Kirim ke seluruh Indonesia</span
+            >
+            <span class="trust-badge"
+              ><i class="fas fa-leaf"></i> Bahan pilihan tanpa pengawet</span
+            >
+            <span class="trust-badge"
+              ><i class="fas fa-star"></i> Rating 4.8/5 dari 500+
+              pelanggan</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Katalog Produk -->
+      <section id="products" class="products-section">
+        <div class="container">
+          <h2 class="section-title">Katalog Produk</h2>
+          <p class="section-subtitle">
+            Semua produk kami dipanggang fresh setiap hari. Gunakan filter atau
+            pencarian untuk menemukan cookies favorit Anda.
+          </p>
+
+          <div class="catalog-toolbar">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Cari nama produk... (contoh: matcha)"
+              />
+            </div>
+            <div class="filter-group">
+              <select
+                id="category-filter"
+                aria-label="Filter kategori"
+              ></select>
+              <select id="sort-filter" aria-label="Urutkan produk">
+                <option value="default">Urutan Default</option>
+                <option value="price-asc">Harga Terendah</option>
+                <option value="price-desc">Harga Tertinggi</option>
+                <option value="name-asc">Nama A-Z</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="results-count" id="results-count"></p>
+
+          <div class="products-grid" id="products-grid"></div>
+        </div>
+      </section>
+
+      <!-- Tentang Kami -->
+      <section
+        id="about"
+        class="products-section"
+        style="background: var(--cream)"
+      >
+        <div class="container">
+          <h2 class="section-title">Tentang Mammalia</h2>
+          <p class="section-subtitle" style="max-width: 800px">
+            Mammalia lahir dari kecintaan kami pada baking rumahan. Sejak 2023,
+            kami berkomitmen menghadirkan cookies berkualitas premium dengan
+            resep teruji dan bahan-bahan segar, dikemas rapi dan dikirim ke
+            seluruh Indonesia. Lihat rencana bisnis lengkap kami di
+            <a
+              href="README.md"
+              style="color: var(--secondary-brown); font-weight: 600"
+              >halaman Business Overview</a
+            >.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal Detail Produk -->
+    <div class="modal-overlay" id="product-modal">
+      <div id="modal-overlay-bg" style="position: absolute; inset: 0"></div>
+      <div class="modal-box">
+        <button
+          class="modal-close"
+          onclick="closeProductModal()"
+          aria-label="Tutup"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <img id="modal-image" class="modal-image" src="" alt="" />
+        <div class="modal-content">
+          <div class="modal-category-tag" id="modal-category"></div>
+          <h2 id="modal-name"></h2>
+          <div class="modal-rating" id="modal-rating"></div>
+          <div class="modal-price" id="modal-price"></div>
+          <p class="modal-desc" id="modal-desc"></p>
+          <div class="modal-stock">
+            <i class="fas fa-check-circle"></i> Stok tersedia
+          </div>
+          <div class="qty-selector">
+            <button
+              class="qty-btn"
+              onclick="changeModalQty(-1)"
+              aria-label="Kurangi"
+            >
+              -
+            </button>
+            <span class="qty-value" id="modal-qty">1</span>
+            <button
+              class="qty-btn"
+              onclick="changeModalQty(1)"
+              aria-label="Tambah"
+            >
+              +
+            </button>
+          </div>
+          <button class="add-to-cart" onclick="addModalToCart()">
+            <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3><i class="fas fa-cookie-bite"></i> Mammalia</h3>
+            <p>
+              Premium cookies made with love. Setiap gigitan bercerita tentang
+              tradisi dan kualitas.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a href="#" aria-label="WhatsApp"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Tautan Cepat</h3>
+            <p>
+              <a href="#home"><i class="fas fa-home"></i> Home</a>
+            </p>
+            <p>
+              <a href="#products"><i class="fas fa-box"></i> Produk</a>
+            </p>
+            <p>
+              <a href="cart.html"
+                ><i class="fas fa-shopping-cart"></i> Keranjang</a
+              >
+            </p>
+            <p>
+              <a href="README.md"
+                ><i class="fas fa-briefcase"></i> Business Overview</a
+              >
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Kebijakan</h3>
+            <p>
+              <a href="#"><i class="fas fa-truck"></i> Info Pengiriman</a>
+            </p>
+            <p>
+              <a href="#"
+                ><i class="fas fa-rotate-left"></i> Retur & Penukaran</a
+              >
+            </p>
+            <p>
+              <a href="#"
+                ><i class="fas fa-shield-halved"></i> Kebijakan Privasi</a
+              >
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Kontak Kami</h3>
+            <p><i class="fas fa-envelope"></i> hello@mammalia.com</p>
+            <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+            <p><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2026 Mammalia. All rights reserved. Made with
+            <i class="fas fa-heart"></i> for cookie lovers.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/catalog.js"></script>
+  </body>
+</html>

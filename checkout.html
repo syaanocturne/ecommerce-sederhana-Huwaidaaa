@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Mammalia</title>
+
+    <!-- Google Analytics (GA4) - Dummy Measurement ID untuk keperluan demo -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-cookie-bite"></i> Mammalia
+        </a>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#products">Produk</a></li>
+            <li>
+              <a href="cart.html" class="cart-link">
+                <i class="fas fa-shopping-cart"></i> Cart
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <h1>Checkout</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Keranjang</a> / Checkout</p>
+    </section>
+
+    <main>
+      <section class="checkout-section">
+        <div class="container">
+          <div class="checkout-layout">
+            <div id="checkout-form-section">
+              <form class="checkout-form" id="checkout-form" novalidate>
+                <h3><i class="fas fa-truck"></i> Informasi Pengiriman</h3>
+
+                <div class="form-group">
+                  <label for="full-name">Nama Lengkap</label>
+                  <input type="text" id="full-name" placeholder="Nama penerima" required />
+                  <p class="error-msg">Nama minimal 3 karakter.</p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="email@contoh.com" required />
+                    <p class="error-msg">Format email tidak valid.</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">No. HP</label>
+                    <input type="tel" id="phone" placeholder="08123456789" required />
+                    <p class="error-msg">Nomor HP tidak valid.</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="address">Alamat Lengkap</label>
+                  <textarea id="address" rows="3" placeholder="Nama jalan, nomor rumah, RT/RW"></textarea>
+                  <p class="error-msg">Alamat minimal 10 karakter.</p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="city">Kota</label>
+                    <input type="text" id="city" placeholder="Bandung" />
+                    <p class="error-msg">Kota wajib diisi.</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="postal-code">Kode Pos</label>
+                    <input type="text" id="postal-code" placeholder="40123" maxlength="5" />
+                    <p class="error-msg">Kode pos harus 5 digit angka.</p>
+                  </div>
+                </div>
+
+                <h3 style="margin-top: 1.5rem;"><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
+                <div class="payment-options">
+                  <div class="payment-option selected" data-method="midtrans">
+                    <i class="fas fa-wallet"></i>
+                    <div>
+                      <strong>Midtrans</strong>
+                      <div style="font-size: 0.8rem; color: #7a5c3e;">Simulasi Virtual Account / QRIS / Kartu Kredit</div>
+                    </div>
+                  </div>
+                  <div class="payment-option" data-method="xendit">
+                    <i class="fas fa-building-columns"></i>
+                    <div>
+                      <strong>Xendit</strong>
+                      <div style="font-size: 0.8rem; color: #7a5c3e;">Simulasi Invoice / E-wallet</div>
+                    </div>
+                  </div>
+                  <div class="payment-option" data-method="cod">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                      <strong>Bayar di Tempat (COD)</strong>
+                      <div style="font-size: 0.8rem; color: #7a5c3e;">Bayar tunai saat barang tiba</div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submit-order-btn">
+                  <i class="fas fa-lock"></i> Bayar Sekarang
+                </button>
+              </form>
+            </div>
+
+            <aside class="order-summary-box" id="order-summary-section">
+              <h3><i class="fas fa-receipt"></i> Ringkasan Pesanan</h3>
+              <div class="order-items-list" id="order-items-list"></div>
+              <div class="order-line">
+                <span>Subtotal</span>
+                <span id="order-subtotal">Rp 0</span>
+              </div>
+              <div class="order-line">
+                <span>Ongkos Kirim</span>
+                <span id="order-shipping">Rp 0</span>
+              </div>
+              <div class="order-line" style="font-weight: 700; font-size: 1.1rem; color: var(--dark-brown); border-top: 1px solid rgba(139,69,19,0.2); padding-top: 0.6rem;">
+                <span>Total Bayar</span>
+                <span id="order-total">Rp 0</span>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Hasil simulasi pembayaran -->
+          <div class="payment-result" id="payment-result" style="display: none;">
+            <i class="fas fa-circle-check"></i>
+            <h2>Pembayaran Berhasil!</h2>
+            <p>Terima kasih telah berbelanja di Mammalia. Pesanan Anda sedang kami proses.</p>
+            <div class="order-id-box">Order ID: <span id="result-order-id"></span></div>
+            <p>Total Pembayaran: <strong id="result-total"></strong></p>
+            <p>Metode: <strong id="result-method"></strong></p>
+            <div style="margin-top: 2rem;">
+              <a href="index.html" class="cta-button">
+                <i class="fas fa-house"></i> Kembali ke Beranda
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3><i class="fas fa-cookie-bite"></i> Mammalia</h3>
+            <p>Premium cookies made with love.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Kontak Kami</h3>
+            <p><i class="fas fa-envelope"></i> hello@mammalia.com</p>
+            <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Mammalia. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
+  </body>
+</html>
