@@ -1,5 +1,8 @@
 # 🍪 Mammalia — Premium Cookies Shop
 
+Nama: Huwaida Aulia Syakieb
+NIM: 209250131
+Kelas: ABI 6
 **Live Demo:** (https://syaanocturne.github.io/ecommerce-sederhana-Huwaidaaa/)
 
 Website e-commerce sederhana untuk toko kue kering premium "Mammalia", dibangun dengan
