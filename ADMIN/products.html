@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Produk - Mammalia Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body data-page="products">
+    <div class="admin-app">
+      <div id="sidebar-placeholder"></div>
+
+      <main class="admin-main">
+        <div id="topbar-placeholder"></div>
+
+        <div class="admin-content">
+          <div class="admin-panel">
+            <div class="admin-panel-header">
+              <h2><i class="fas fa-cookie-bite"></i> Semua Produk (<span id="product-count">0</span>)</h2>
+              <div style="display:flex; gap:0.6rem;">
+                <input
+                  type="text"
+                  id="admin-search"
+                  placeholder="Cari produk..."
+                  style="padding:0.6rem 1rem; border-radius:50px; border:1px solid rgba(139,69,19,0.25); font-family:inherit;"
+                />
+                <a href="product-form.html" class="btn btn-brown"><i class="fas fa-plus"></i> Tambah Produk</a>
+              </div>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Produk</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Badge</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="products-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal konfirmasi hapus -->
+    <div class="admin-modal-overlay" id="delete-modal">
+      <div class="admin-modal-box">
+        <i class="fas fa-triangle-exclamation warn-icon"></i>
+        <h3>Hapus produk ini?</h3>
+        <p style="color:#8a6d4b; font-size:0.9rem; margin-top:0.5rem;" id="delete-modal-text"></p>
+        <div class="admin-modal-actions">
+          <button class="btn btn-outline" id="cancel-delete-btn">Batal</button>
+          <button class="btn btn-danger-outline" id="confirm-delete-btn">Ya, Hapus</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/admin-data.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-layout.js"></script>
+    <script src="js/admin-products.js"></script>
+  </body>
+</html>

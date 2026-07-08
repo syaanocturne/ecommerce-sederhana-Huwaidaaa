@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Admin - Mammalia</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-login-wrap">
+      <div class="admin-login-box">
+        <div class="logo"><i class="fas fa-cookie-bite"></i> Mammalia</div>
+        <p class="subtitle">Masuk ke Admin Panel</p>
+
+        <form id="login-form">
+          <p class="login-error" id="login-error"></p>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="admin" autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%;">
+            <i class="fas fa-right-to-bracket"></i> Masuk
+          </button>
+        </form>
+
+        <div class="login-hint">
+          <i class="fas fa-circle-info"></i> Demo credentials — Username: <strong>admin</strong>,
+          Password: <strong>mammalia123</strong>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/admin-auth.js"></script>
+    <script>
+      if (isAdminLoggedIn()) {
+        window.location.href = "dashboard.html";
+      }
+
+      document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const errorEl = document.getElementById("login-error");
+
+        if (adminLogin(username, password)) {
+          window.location.href = "dashboard.html";
+        } else {
+          errorEl.textContent = "Username atau password salah.";
+        }
+      });
+    </script>
+  </body>
+</html>

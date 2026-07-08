@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mammalia Admin</title>
+    <script src="js/admin-auth.js"></script>
+    <script>
+      if (isAdminLoggedIn()) {
+        window.location.replace("dashboard.html");
+      } else {
+        window.location.replace("login.html");
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>JavaScript nonaktif. Silakan buka <a href="login.html">halaman login</a> secara manual.</p>
+    </noscript>
+  </body>
+</html>
