@@ -4,7 +4,9 @@
  * validasi form sederhana, dan simulasi payment gateway (dummy Midtrans/Xendit).
  */
 
-const CHECKOUT_SHIPPING_FEE = 15000;
+const CHECKOUT_SHIPPING_FEE = 10000;
+const ORDERS_LS_KEY = "mammalia_orders";
+const PRODUCTS_LS_KEY_CHECKOUT = "mammalia_products";
 let selectedPayment = "midtrans";
 
 function renderOrderSummary() {
@@ -107,6 +109,71 @@ function selectPaymentMethod(method) {
 }
 
 /* ---------------------------------------------------------------------- *
+ * SIMPAN PESANAN & UPDATE STOK (supaya nyambung ke Admin Panel)
+ * ---------------------------------------------------------------------- */
+
+function buildOrderObject(orderId, cartSnapshot, total) {
+  const items = cartSnapshot.map((item) => {
+    const product = PRODUCTS.find((p) => p.id === item.id);
+    return {
+      id: item.id,
+      name: product ? product.name : "Produk",
+      qty: item.qty,
+      price: product ? product.price : 0,
+    };
+  });
+
+  const nowIso = new Date().toISOString();
+
+  return {
+    id: orderId,
+    customer: {
+      name: document.getElementById("full-name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      address: document.getElementById("address").value.trim(),
+      city: document.getElementById("city").value.trim(),
+      postalCode: document.getElementById("postal-code").value.trim(),
+    },
+    items,
+    shipping: CHECKOUT_SHIPPING_FEE,
+    total,
+    paymentMethod: selectedPayment, // "midtrans" | "xendit" | "cod"
+    // Midtrans & Xendit: simulasi selalu sukses -> anggap sudah lunas.
+    // COD: baru lunas saat barang diterima, jadi statusnya pending dulu.
+    paymentStatus: selectedPayment === "cod" ? "pending" : "paid",
+    orderStatus: "diproses",
+    date: nowIso,
+    trackingHistory: [{ status: "diproses", timestamp: nowIso }],
+  };
+}
+
+function saveOrderToStorage(order) {
+  try {
+    const raw = localStorage.getItem(ORDERS_LS_KEY);
+    const orders = raw ? JSON.parse(raw) : [];
+    orders.push(order);
+    localStorage.setItem(ORDERS_LS_KEY, JSON.stringify(orders));
+  } catch (e) {
+    console.error("Gagal menyimpan pesanan:", e);
+  }
+}
+
+function decrementStockAndSave(cartSnapshot) {
+  try {
+    const raw = localStorage.getItem(PRODUCTS_LS_KEY_CHECKOUT);
+    const products = raw ? JSON.parse(raw) : PRODUCTS;
+    cartSnapshot.forEach((item) => {
+      const p = products.find((pr) => pr.id === item.id);
+      if (p) p.stock = Math.max(0, p.stock - item.qty);
+    });
+    localStorage.setItem(PRODUCTS_LS_KEY_CHECKOUT, JSON.stringify(products));
+  } catch (e) {
+    console.error("Gagal memperbarui stok produk:", e);
+  }
+}
+
+/* ---------------------------------------------------------------------- *
  * SIMULASI PAYMENT GATEWAY
  * Catatan: Ini adalah simulasi untuk keperluan demo/tugas.
  * Di implementasi nyata, langkah ini akan memanggil API
@@ -119,6 +186,7 @@ function simulatePayment() {
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses pembayaran...';
 
+  const cartSnapshot = getCart(); // ambil sebelum keranjang dikosongkan
   const total = getCartTotal() + CHECKOUT_SHIPPING_FEE;
   const orderId = "MAM-" + Date.now().toString().slice(-8);
 
@@ -130,6 +198,11 @@ function simulatePayment() {
       value: total,
       payment_method: selectedPayment,
     });
+
+    // Simpan pesanan & update stok supaya langsung terlihat di Admin Panel
+    const order = buildOrderObject(orderId, cartSnapshot, total);
+    saveOrderToStorage(order);
+    decrementStockAndSave(cartSnapshot);
 
     document.getElementById("checkout-form-section").style.display = "none";
     document.getElementById("order-summary-section").style.display = "none";
@@ -171,5 +244,4 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       showNotification("Mohon lengkapi form dengan benar.", "error");
     }
-  });
 });
