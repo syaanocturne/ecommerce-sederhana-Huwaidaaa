@@ -98,16 +98,16 @@ const PRODUCTS = [
   },
   {
     id: 8,
-    name: "Sagu Cookies",
+    name: "Butter Sogo Cookies",
     category: "cookies",
-    weight: "250gr",
+    weight: "350gr",
     price: 45000,
     image: "images/almond-crunch.svg",
     description:
-      "Cookies premium dengan taburan almond panggang utuh. Renyah maksimal dengan aroma kacang yang khas.",
-    stock: 12,
-    badge: "Premium",
-    rating: 4.9,
+      "Kue sagu dengan tekstur yang ringan dan mudah lumer di mulut. Sederhana, klasik, dan selalu nyaman untuk dinikmati kapan saja.",
+    stock: 55,
+    badge: "Cheesy",
+    rating: 4.5,
   },
   {
     id: 9,
@@ -130,8 +130,8 @@ const PRODUCTS = [
     price: 10000,
     image: "images/sampler-pack.svg",
     description:
-      "Cicipi 5 varian rasa terbaik kami dalam satu paket: chocolate, matcha, red velvet, choco chip, dan almond crunch.",
-    stock: 14,
+      "Dibuat dari bahan kanvas berkualitas untuk penggunaan sehari-hari.",
+    stock: 15,
     badge: "Hampers",
     rating: 5.0,
   },
@@ -141,7 +141,6 @@ const PRODUCTS = [
 const CATEGORIES = [
   { value: "all", label: "Semua Kategori" },
   { value: "cookies", label: "Cookies" },
-  { value: "pastry", label: "Pastry" },
   { value: "giftbox", label: "Gift Box / Hampers" },
 ];
 
