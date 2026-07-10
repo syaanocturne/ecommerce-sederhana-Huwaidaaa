@@ -228,6 +228,12 @@ nav a.active::after {
   color: var(--white);
 }
 
+.cta-button.sm {
+  padding: 0.6rem 1.3rem;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 14px rgba(139, 69, 19, 0.25);
+}
+
 /* Trust badges under hero */
 .trust-badges {
   display: flex;
