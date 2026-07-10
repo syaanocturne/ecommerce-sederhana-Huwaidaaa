@@ -988,6 +988,44 @@ nav a.active::after {
   text-align: center;
 }
 
+.shopeepay-box {
+  display: block;
+  background: var(--dark-cream);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.shopeepay-box h4 {
+  color: var(--primary-brown);
+  margin-bottom: 0.8rem;
+}
+
+.shopeepay-qr {
+  width: 200px;
+  max-width: 70%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(139, 69, 19, 0.15);
+  background: var(--white);
+  padding: 0.5rem;
+}
+
+.shopeepay-steps {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #6b4c2e;
+  max-width: 420px;
+  margin: 0.6rem auto 0;
+  padding-left: 1.2rem;
+}
+
+.shopeepay-steps li {
+  margin-bottom: 0.4rem;
+}
+
 .order-summary-box .order-line {
   display: flex;
   justify-content: space-between;
@@ -1036,6 +1074,129 @@ nav a.active::after {
   font-weight: 700;
   color: var(--secondary-brown);
   margin: 1rem 0;
+}
+
+/* ==========================================================================
+   Tracking Pesanan (halaman konsumen)
+   ========================================================================== */
+.tracking-search-box {
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: 0 5px 25px var(--shadow);
+}
+
+.tracking-search-box .form-group {
+  margin-bottom: 1rem;
+}
+
+.tracking-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.tracking-timeline li {
+  position: relative;
+  padding-left: 2.2rem;
+  padding-bottom: 1.8rem;
+}
+
+.tracking-timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.tracking-timeline li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dark-cream);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--dark-cream);
+}
+
+.tracking-timeline li.done::before {
+  background: var(--success);
+  box-shadow: 0 0 0 2px var(--success);
+}
+
+.tracking-timeline li.current::before {
+  background: var(--secondary-brown);
+  box-shadow: 0 0 0 4px rgba(160, 82, 45, 0.25);
+}
+
+.tracking-timeline li::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 20px;
+  bottom: 0;
+  width: 2px;
+  background: var(--dark-cream);
+}
+
+.tracking-timeline li:last-child::after {
+  display: none;
+}
+
+.tracking-step-title {
+  font-weight: 600;
+  color: var(--dark-brown);
+  font-size: 0.95rem;
+}
+
+.tracking-step-time {
+  font-size: 0.78rem;
+  color: #a3876a;
+  margin-top: 0.15rem;
+}
+
+.tracking-header-box {
+  background: linear-gradient(135deg, var(--cream), var(--dark-cream));
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tracking-number-display {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-brown);
+  letter-spacing: 1px;
+}
+
+.not-shippable-notice {
+  background: #fdf1de;
+  color: #8a6018;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tracking-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #a3876a;
+}
+
+.tracking-empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  display: block;
 }
 
 /* ==========================================================================
