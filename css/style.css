@@ -1004,6 +1004,8 @@ nav a.active::after {
 }
 
 .shopeepay-qr {
+  display: block;
+  margin: 0 auto;
   width: 200px;
   max-width: 70%;
   height: auto;
