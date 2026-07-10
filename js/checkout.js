@@ -1,13 +1,13 @@
 /**
  * checkout.js
  * Logika halaman checkout.html: menampilkan ringkasan order,
- * validasi form sederhana, dan simulasi payment gateway (dummy Midtrans/Xendit).
+ * validasi form sederhana, dan proses pembayaran (ShopeePay scan QR manual & COD).
  */
  
 const CHECKOUT_SHIPPING_FEE = 10000;
 const ORDERS_LS_KEY = "mammalia_orders";
 const PRODUCTS_LS_KEY_CHECKOUT = "mammalia_products";
-let selectedPayment = "midtrans";
+let selectedPayment = "shopeepay";
  
 function renderOrderSummary() {
   const cart = getCart();
@@ -41,6 +41,9 @@ function renderOrderSummary() {
   subtotalEl.textContent = formatRupiah(subtotal);
   shippingEl.textContent = formatRupiah(shipping);
   totalEl.textContent = formatRupiah(total);
+
+  const shopeepayTotalEl = document.getElementById("shopeepay-total");
+  if (shopeepayTotalEl) shopeepayTotalEl.textContent = formatRupiah(total);
 }
  
 /* ---------------------------------------------------------------------- *
@@ -106,6 +109,10 @@ function selectPaymentMethod(method) {
   document.querySelectorAll(".payment-option").forEach((el) => {
     el.classList.toggle("selected", el.dataset.method === method);
   });
+  const shopeepayBox = document.getElementById("shopeepay-box");
+  if (shopeepayBox) {
+    shopeepayBox.style.display = method === "shopeepay" ? "block" : "none";
+  }
 }
  
 /* ---------------------------------------------------------------------- *
@@ -138,13 +145,16 @@ function buildOrderObject(orderId, cartSnapshot, total) {
     items,
     shipping: CHECKOUT_SHIPPING_FEE,
     total,
-    paymentMethod: selectedPayment, // "midtrans" | "xendit" | "cod"
-    // Midtrans & Xendit: simulasi selalu sukses -> anggap sudah lunas.
-    // COD: baru lunas saat barang diterima, jadi statusnya pending dulu.
-    paymentStatus: selectedPayment === "cod" ? "pending" : "paid",
-    orderStatus: "diproses",
+    paymentMethod: selectedPayment, // "shopeepay" | "cod"
+    // ShopeePay: customer scan & bayar manual, baru dianggap lunas setelah admin
+    // memverifikasi bukti transfer yang dikirim lewat DM Instagram -> pending & menunggu konfirmasi.
+    // COD: baru lunas saat barang diterima, jadi statusnya pending dulu juga.
+    paymentStatus: "pending",
+    orderStatus: selectedPayment === "shopeepay" ? "menunggu_pembayaran" : "diproses",
     date: nowIso,
-    trackingHistory: [{ status: "diproses", timestamp: nowIso }],
+    trackingHistory: [
+      { status: selectedPayment === "shopeepay" ? "menunggu_pembayaran" : "diproses", timestamp: nowIso },
+    ],
   };
 }
  
@@ -174,11 +184,12 @@ function decrementStockAndSave(cartSnapshot) {
 }
  
 /* ---------------------------------------------------------------------- *
- * SIMULASI PAYMENT GATEWAY
- * Catatan: Ini adalah simulasi untuk keperluan demo/tugas.
- * Di implementasi nyata, langkah ini akan memanggil API
- * Midtrans Snap / Xendit Invoice untuk membuat transaksi sungguhan,
- * lalu menunggu callback/webhook status pembayaran dari server.
+ * PROSES PEMBAYARAN
+ * Catatan: ShopeePay di sini masih berupa scan QR statis + konfirmasi manual
+ * lewat bukti transfer yang dikirim ke DM Instagram (bukan integrasi API
+ * ShopeePay/payment gateway sungguhan). Untuk otomatisasi penuh, langkah ini
+ * perlu diganti dengan ShopeePay Open API / QRIS dinamis via payment gateway
+ * (mis. Midtrans/Xendit) yang bisa memverifikasi status bayar otomatis lewat webhook.
  * ---------------------------------------------------------------------- */
  
 function simulatePayment() {
@@ -211,7 +222,21 @@ function simulatePayment() {
     document.getElementById("result-order-id").textContent = orderId;
     document.getElementById("result-total").textContent = formatRupiah(total);
     document.getElementById("result-method").textContent = paymentMethodLabel(selectedPayment);
- 
+
+    const heading = document.getElementById("result-heading");
+    const message = document.getElementById("result-message");
+    const shopeepayNote = document.getElementById("result-shopeepay-note");
+
+    if (selectedPayment === "shopeepay") {
+      heading.textContent = "Pesanan Diterima, Menunggu Konfirmasi Pembayaran";
+      message.textContent = "Pesanan kamu sudah tercatat. Segera kirim bukti pembayaran ShopeePay via DM Instagram agar kami bisa langsung memprosesnya.";
+      shopeepayNote.style.display = "block";
+    } else {
+      heading.textContent = "Pesanan Berhasil Dibuat!";
+      message.textContent = "Terima kasih telah berbelanja di Mammalia. Silakan siapkan uang tunai, pesanan akan diproses dan dibayar saat barang tiba (COD).";
+      shopeepayNote.style.display = "none";
+    }
+
     clearCart();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, 1800);
@@ -219,8 +244,7 @@ function simulatePayment() {
  
 function paymentMethodLabel(method) {
   const labels = {
-    midtrans: "Midtrans (Simulasi)",
-    xendit: "Xendit (Simulasi)",
+    shopeepay: "ShopeePay (Scan QR)",
     cod: "Bayar di Tempat (COD)",
   };
   return labels[method] || method;
