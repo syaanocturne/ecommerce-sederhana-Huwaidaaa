@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lacak Pesanan - Mammalia</title>
+
+    <!-- Google Analytics (GA4) - Dummy Measurement ID untuk keperluan demo -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-cookie-bite"></i> Mammalia
+        </a>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#products">Produk</a></li>
+            <li><a href="tracking.html"><i class="fas fa-truck-fast"></i> Lacak Pesanan</a></li>
+            <li>
+              <a href="cart.html" class="cart-link">
+                <i class="fas fa-shopping-cart"></i> Cart
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <h1>Lacak Pesanan</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> / Lacak Pesanan</p>
+    </section>
+
+    <main>
+      <section class="checkout-section">
+        <div class="container">
+          <div class="tracking-search-box">
+            <h3 style="margin-bottom: 1.2rem;"><i class="fas fa-magnifying-glass"></i> Cek Status Pesanan</h3>
+            <form id="tracking-search-form">
+              <div class="form-group">
+                <label for="track-order-id">Order ID</label>
+                <input type="text" id="track-order-id" placeholder="MAM-12345678" required />
+                <p class="error-msg">Order ID wajib diisi.</p>
+              </div>
+              <div class="form-group">
+                <label for="track-phone">Nomor HP (yang dipakai saat checkout)</label>
+                <input type="tel" id="track-phone" placeholder="08123456789" required />
+                <p class="error-msg">Nomor HP wajib diisi.</p>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                <i class="fas fa-truck-fast"></i> Lacak Pesanan
+              </button>
+            </form>
+          </div>
+
+          <div id="tracking-result" style="max-width: 640px; margin: 0 auto;"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3><i class="fas fa-cookie-bite"></i> Mammalia</h3>
+            <p>Premium cookies made with love.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Kontak Kami</h3>
+            <p><i class="fas fa-envelope"></i> hello@mammalia.com</p>
+            <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Mammalia. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/tracking.js"></script>
+  </body>
+</html>
