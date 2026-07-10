@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data & Profitabilitas - Mammalia Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body data-page="analytics">
+    <div class="admin-app">
+      <div id="sidebar-placeholder"></div>
+
+      <main class="admin-main">
+        <div id="topbar-placeholder"></div>
+
+        <div class="admin-content">
+          <div class="admin-panel" style="margin-bottom: 1.2rem;">
+            <div class="admin-panel-header">
+              <h2><i class="fas fa-sliders"></i> Filter Periode</h2>
+            </div>
+            <div style="padding: 1rem 1.2rem; display:flex; gap:0.8rem; flex-wrap:wrap; align-items:center;">
+              <select id="filter-period" style="padding:0.6rem 1rem; border-radius:50px; border:1px solid rgba(139,69,19,0.25); font-family:inherit;">
+                <option value="all">Semua Waktu</option>
+                <option value="7">7 Hari Terakhir</option>
+                <option value="30">30 Hari Terakhir</option>
+                <option value="90">90 Hari Terakhir</option>
+              </select>
+              <span style="font-size:0.8rem; color:#8a6d4b;">Pesanan yang dibatalkan tidak dihitung sebagai pendapatan.</span>
+            </div>
+          </div>
+
+          <div class="stat-grid" id="analytics-stat-grid"></div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-header">
+              <h2><i class="fas fa-trophy"></i> Produk Terlaris (Jumlah Terjual)</h2>
+            </div>
+            <div style="padding: 1.2rem;" id="top-selling-list"></div>
+          </div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-header">
+              <h2><i class="fas fa-sack-dollar"></i> Produk Paling Menguntungkan (Total Pendapatan)</h2>
+            </div>
+            <div style="padding: 1.2rem;" id="top-revenue-list"></div>
+          </div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-header">
+              <h2><i class="fas fa-chart-pie"></i> Pendapatan per Metode Pembayaran</h2>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="payment-breakdown-table">
+                <thead>
+                  <tr>
+                    <th>Metode</th>
+                    <th>Jumlah Pesanan</th>
+                    <th>Total Pendapatan</th>
+                    <th>Kontribusi</th>
+                  </tr>
+                </thead>
+                <tbody id="payment-breakdown-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-header">
+              <h2><i class="fas fa-boxes-stacked"></i> Seluruh Produk &mdash; Detail Penjualan</h2>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="product-breakdown-table">
+                <thead>
+                  <tr>
+                    <th>Produk</th>
+                    <th>Kategori</th>
+                    <th>Terjual (pcs)</th>
+                    <th>Total Pendapatan</th>
+                    <th>Sisa Stok</th>
+                  </tr>
+                </thead>
+                <tbody id="product-breakdown-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/admin-data.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-layout.js"></script>
+    <script src="js/admin-analytics.js"></script>
+  </body>
+</html>
