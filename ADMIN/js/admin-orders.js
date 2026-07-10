@@ -21,7 +21,7 @@ function statusPillClassLocal(status) {
 }
 
 function paymentLabelLocal(order) {
-  const methodLabels = { cod: "COD", midtrans: "Midtrans", xendit: "Xendit" };
+  const methodLabels = { cod: "COD", shopeepay: "ShopeePay" };
   return methodLabels[order.paymentMethod] || order.paymentMethod;
 }
 
