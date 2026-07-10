@@ -162,7 +162,7 @@ const PRODUCTS = loadProductsFromStorage();
 const CATEGORIES = [
   { value: "all", label: "Semua Kategori" },
   { value: "cookies", label: "Cookies" },
-  { value: "pastry", label: "Pastry" },
+  { value: "cheesy", label: "Cheesy" },
   { value: "giftbox", label: "Gift Box / Hampers" },
 ];
 
