@@ -122,13 +122,11 @@
                 </div>
 
                 <!-- Instruksi & QR ShopeePay, muncul hanya kalau metode ShopeePay dipilih -->
-<div id="shopeepay-box" class="shopeepay-box">
-  <h4><i class="fas fa-qrcode"></i> Scan untuk Bayar dengan ShopeePay</h4>
-  <img src="images/sopi.png" alt="QR ShopeePay Mammalia" class="shopeepay-qr" onerror="this.style.display='none'; document.getElementById('shopeepay-qr-fallback').style.display='block';" />
-  <p id="shopeepay-qr-fallback" style="display:none; color: var(--danger); font-size: 0.85rem;">
-    <i class="fas fa-triangle-exclamation"></i> Gambar QR belum tersedia. Hubungi admin toko.
-  </p>
-  ...
+                <div id="shopeepay-box" class="shopeepay-box">
+                  <h4><i class="fas fa-qrcode"></i> Scan untuk Bayar dengan ShopeePay</h4>
+                  <img src="images/sopi.png" alt="QR ShopeePay Mammalia" class="shopeepay-qr" onerror="this.style.display='none'; document.getElementById('shopeepay-qr-fallback').style.display='block';" />
+                  <p id="shopeepay-qr-fallback" style="display:none; color: var(--danger); font-size: 0.85rem;">
+                    <i class="fas fa-triangle-exclamation"></i> Gambar QR belum tersedia. Hubungi admin toko.
                   </p>
                   <p style="margin: 0.8rem 0 0.3rem;">Total yang harus dibayar: <strong id="shopeepay-total">Rp 0</strong></p>
                   <ol class="shopeepay-steps">
@@ -181,10 +179,10 @@
               </a>
             </div>
             <div style="margin-top: 2rem;">
-              <a href="tracking.html" class="cta-button">
+              <a href="tracking.html" class="cta-button sm">
                 <i class="fas fa-truck-fast"></i> Lacak Pesanan Saya
               </a>
-              <a href="index.html" class="cta-button" style="margin-left:0.6rem;">
+              <a href="index.html" class="cta-button sm" style="margin-left:0.6rem;">
                 <i class="fas fa-house"></i> Kembali ke Beranda
               </a>
             </div>
