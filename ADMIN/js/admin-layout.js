@@ -12,6 +12,7 @@ const ADMIN_NAV_ITEMS = [
   { page: "product-form", href: "product-form.html", icon: "fa-plus", label: "Tambah Produk", hiddenInNav: true },
   { page: "orders", href: "orders.html", icon: "fa-receipt", label: "Pesanan" },
   { page: "tracking", href: "tracking.html", icon: "fa-truck-fast", label: "Tracking", hiddenInNav: true },
+  { page: "analytics", href: "analytics.html", icon: "fa-chart-line", label: "Data & Profitabilitas" },
 ];
 
 const PAGE_TITLES = {
@@ -20,6 +21,7 @@ const PAGE_TITLES = {
   "product-form": "Form Produk",
   orders: "Manajemen Pesanan",
   tracking: "Lacak Pengiriman",
+  analytics: "Data & Profitabilitas",
 };
 
 function renderAdminSidebar() {
