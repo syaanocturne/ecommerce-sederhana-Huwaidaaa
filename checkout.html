@@ -36,6 +36,7 @@
           <ul id="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#products">Produk</a></li>
+            <li><a href="tracking.html"><i class="fas fa-truck-fast"></i> Lacak Pesanan</a></li>
             <li>
               <a href="cart.html" class="cart-link">
                 <i class="fas fa-shopping-cart"></i> Cart
@@ -104,18 +105,11 @@
 
                 <h3 style="margin-top: 1.5rem;"><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
                 <div class="payment-options">
-                  <div class="payment-option selected" data-method="midtrans">
-                    <i class="fas fa-wallet"></i>
+                  <div class="payment-option selected" data-method="shopeepay">
+                    <i class="fas fa-qrcode"></i>
                     <div>
-                      <strong>Midtrans</strong>
-                      <div style="font-size: 0.8rem; color: #7a5c3e;">Simulasi Virtual Account / QRIS / Kartu Kredit</div>
-                    </div>
-                  </div>
-                  <div class="payment-option" data-method="xendit">
-                    <i class="fas fa-building-columns"></i>
-                    <div>
-                      <strong>Xendit</strong>
-                      <div style="font-size: 0.8rem; color: #7a5c3e;">Simulasi Invoice / E-wallet</div>
+                      <strong>ShopeePay (Scan QR)</strong>
+                      <div style="font-size: 0.8rem; color: #7a5c3e;">Bayar via scan QR ShopeePay</div>
                     </div>
                   </div>
                   <div class="payment-option" data-method="cod">
@@ -125,6 +119,27 @@
                       <div style="font-size: 0.8rem; color: #7a5c3e;">Bayar tunai saat barang tiba</div>
                     </div>
                   </div>
+                </div>
+
+                <!-- Instruksi & QR ShopeePay, muncul hanya kalau metode ShopeePay dipilih -->
+<div id="shopeepay-box" class="shopeepay-box">
+  <h4><i class="fas fa-qrcode"></i> Scan untuk Bayar dengan ShopeePay</h4>
+  <img src="images/sopi.png" alt="QR ShopeePay Mammalia" class="shopeepay-qr" onerror="this.style.display='none'; document.getElementById('shopeepay-qr-fallback').style.display='block';" />
+  <p id="shopeepay-qr-fallback" style="display:none; color: var(--danger); font-size: 0.85rem;">
+    <i class="fas fa-triangle-exclamation"></i> Gambar QR belum tersedia. Hubungi admin toko.
+  </p>
+  ...
+                  </p>
+                  <p style="margin: 0.8rem 0 0.3rem;">Total yang harus dibayar: <strong id="shopeepay-total">Rp 0</strong></p>
+                  <ol class="shopeepay-steps">
+                    <li>Buka aplikasi ShopeePay, pilih <strong>Scan/Bayar</strong>, lalu scan QR di atas.</li>
+                    <li>Pastikan nominal yang dibayar sesuai dengan Total Bayar.</li>
+                    <li>Screenshot bukti pembayaran yang berhasil.</li>
+                    <li>Kirim bukti pembayaran beserta Order ID kamu ke DM Instagram kami agar pesanan segera diverifikasi &amp; diproses.</li>
+                  </ol>
+                  <a href="https://www.instagram.com/mamamliaa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex; margin-top:0.5rem;">
+                    <i class="fab fa-instagram"></i> Kirim Bukti via DM Instagram
+                  </a>
                 </div>
 
                 <button type="submit" class="btn-primary" id="submit-order-btn">
@@ -153,14 +168,23 @@
 
           <!-- Hasil simulasi pembayaran -->
           <div class="payment-result" id="payment-result" style="display: none;">
-            <i class="fas fa-circle-check"></i>
-            <h2>Pembayaran Berhasil!</h2>
-            <p>Terima kasih telah berbelanja di Mammalia. Pesanan Anda sedang kami proses.</p>
+            <i class="fas fa-circle-check" id="result-icon"></i>
+            <h2 id="result-heading">Pembayaran Berhasil!</h2>
+            <p id="result-message">Terima kasih telah berbelanja di Mammalia. Pesanan Anda sedang kami proses.</p>
             <div class="order-id-box">Order ID: <span id="result-order-id"></span></div>
             <p>Total Pembayaran: <strong id="result-total"></strong></p>
             <p>Metode: <strong id="result-method"></strong></p>
+            <div id="result-shopeepay-note" style="display:none; background: var(--dark-cream); border-radius: 12px; padding: 1rem; margin-top: 1rem; text-align: left;">
+              <p style="margin:0 0 0.5rem;"><i class="fas fa-circle-info"></i> Jangan lupa kirim bukti pembayaran ShopeePay kamu beserta Order ID di atas ke DM Instagram kami supaya pesanan segera kami verifikasi.</p>
+              <a href="https://www.instagram.com/mamamliaa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="btn-primary">
+                <i class="fab fa-instagram"></i> Kirim Bukti via DM Instagram
+              </a>
+            </div>
             <div style="margin-top: 2rem;">
-              <a href="index.html" class="cta-button">
+              <a href="tracking.html" class="cta-button">
+                <i class="fas fa-truck-fast"></i> Lacak Pesanan Saya
+              </a>
+              <a href="index.html" class="cta-button" style="margin-left:0.6rem;">
                 <i class="fas fa-house"></i> Kembali ke Beranda
               </a>
             </div>
